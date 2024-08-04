@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { SessionSwitch } from "@/components/SessionSwitch";
 
 export default function Home() {
   return (
@@ -9,7 +9,8 @@ export default function Home() {
       <p className="mt-4 text-lg">
         A simple content management app built with Next.js
       </p>
-      <Button className="mt-8">Get started</Button>
+
+      <SessionSwitch />
     </main>
   );
 }
