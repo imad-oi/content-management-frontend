@@ -1,6 +1,5 @@
 "use client"
 
-import Captcha from "@/components/Captcha";
 import { Button } from "@/components/ui/button";
 import WelcomeBanner from "@/components/WelcomeBanner";
 import Link from "next/link";

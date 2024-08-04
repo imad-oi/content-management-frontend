@@ -1,9 +1,9 @@
+import Header from '@/components/Header'
+import { Toaster } from '@/components/ui/toaster'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
 import { SessionProvider } from '../components/SessionProvider'
 import '../styles/globals.css'
-import Header from '@/components/Header'
-import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 

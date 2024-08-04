@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react';
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { setCaptchaVerified } from '@/utils/captchaUtils';
-import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Captcha({onVerify}) {
   const [captchaText, setCaptchaText] = useState('');
