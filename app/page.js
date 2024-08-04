@@ -1,3 +1,4 @@
+import { ContentManager } from "@/components/ContentManager";
 import { SessionSwitch } from "@/components/SessionSwitch";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       </p>
 
       <SessionSwitch />
+      <ContentManager />
     </main>
   );
 }
