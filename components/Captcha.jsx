@@ -109,7 +109,7 @@ export default function Captcha({onVerify}) {
                 aria-describedby="captcha-description"
               />
               <p id="captcha-description" className="sr-only">
-                Enter the characters you see in the image above. If you can't read the image, use the Regenerate CAPTCHA button to get a new image.
+                Enter the characters you see in the image above. If you can t read the image, use the Regenerate CAPTCHA button to get a new image.
               </p>
             </div>
           </div>
