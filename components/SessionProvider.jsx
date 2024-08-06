@@ -8,13 +8,13 @@ export function SessionProvider({ children }) {
   const [session, setSession] = useState('writer')
 
   useEffect(() => {
-    const storedSession = localStorage.getItem('session')
+    const storedSession = sessionStorage.getItem('session')
     if (storedSession) setSession(storedSession)
   }, [])
 
   const switchSession = (newSession) => {
     setSession(newSession)
-    localStorage.setItem('session', newSession)
+    sessionStorage.setItem('session', newSession)
   }
 
   return (
@@ -26,4 +26,9 @@ export function SessionProvider({ children }) {
 
 export function useSession() {
   return useContext(SessionContext)
+}
+
+// Add a function to clear the session
+export function clearSession() {
+  sessionStorage.removeItem('session')
 }

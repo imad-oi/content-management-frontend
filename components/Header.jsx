@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, SignInButton, useClerk, UserButton } from '@clerk/
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { clearCaptchaVerification } from '@/utils/captchaUtils';
+import { clearSession } from './SessionProvider';
 
 const Header = () => {
   const { signOut } = useClerk();
@@ -11,6 +12,7 @@ const Header = () => {
   const handleSignOut = async () => {
     await signOut();
     clearCaptchaVerification();
+    clearSession();
   };
   return (
     <header className="bg-white shadow-md">
