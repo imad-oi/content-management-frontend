@@ -28,7 +28,6 @@ export function useSession() {
   return useContext(SessionContext)
 }
 
-// Add a function to clear the session
 export function clearSession() {
   sessionStorage.removeItem('session')
 }

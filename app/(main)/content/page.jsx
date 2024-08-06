@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Captcha from "@/components/Captcha";
 import { ContentManager } from "@/components/ContentManager";
@@ -7,7 +7,7 @@ import WelcomeBanner from "@/components/WelcomeBanner";
 import { isCaptchaVerified } from "@/utils/captchaUtils";
 import { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
@@ -21,25 +21,37 @@ const page = () => {
     }
   };
   return (
-    <div>
+    <div role="region" aria-label="Content Management Area">
       {!isVerified ? (
-        <div className="flex flex-col items-center justify-center">
-          <p className="mb-2">
-            Please complete the CAPTCHA to access the content manager:
-          </p>
-          <Captcha onVerify={checkVerification} />
-        </div>
+        <section aria-labelledby="captcha-title">
+          <h2 id="captcha-title" className="sr-only">
+            CAPTCHA Verification
+          </h2>
+          <div className="flex flex-col items-center justify-center">
+            <p className="mb-2" id="captcha-description">
+              Please complete the CAPTCHA to access the content manager:
+            </p>
+            <Captcha
+              onVerify={checkVerification}
+              aria-describedby="captcha-description"
+            />
+          </div>
+        </section>
       ) : (
         <>
-          <div className="flex flex-col items-center justify-center">
+          <header className="flex flex-col items-center justify-center">
             <WelcomeBanner />
-            <SessionSwitch />
-          </div>
-          <ContentManager />
+            <nav aria-label="Session switcher">
+              <SessionSwitch />
+            </nav>
+          </header>
+          <main>
+            <ContentManager />
+          </main>
         </>
       )}
     </div>
   );
 };
 
-export default page;
+export default Page;
