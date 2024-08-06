@@ -22,14 +22,6 @@ const nextConfig = {
             value: "default-src 'self' https://*.clerk.com https://*.clerk.dev https://*.clerk.accounts.dev; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.com https://*.clerk.dev https://*.clerk.accounts.dev https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://*.clerk.com https://*.clerk.dev https://*.clerk.accounts.dev; img-src 'self' data: https: blob:; connect-src 'self' https://*.clerk.com https://*.clerk.dev https://*.clerk.accounts.dev https://api.ipify.org; frame-src 'self' https://*.clerk.com https://*.clerk.dev https://*.clerk.accounts.dev https://accounts.google.com; font-src 'self' https://fonts.gstatic.com; object-src 'none';"
           },
           // {
-          //   key: 'Content-Security-Policy-Report-Only',
-          //   value: "default-src 'self' https://*.clerk.com https://*.clerk.dev; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.com https://*.clerk.dev https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://*.clerk.com https://*.clerk.dev; img-src 'self' data: https: blob:; connect-src 'self' https://*.clerk.com https://*.clerk.dev https://api.ipify.org; frame-src 'self' https://*.clerk.com https://*.clerk.dev https://accounts.google.com; font-src 'self' https://fonts.gstatic.com; object-src 'none';"
-          // }
-          // {
-          //   key: 'Content-Security-Policy',
-          //   value: "default-src 'self' https://*.clerk.com https://*.clerk.dev; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.com https://*.clerk.dev; style-src 'self' 'unsafe-inline' https://*.clerk.com https://*.clerk.dev; img-src 'self' data: https://*.clerk.com https://*.clerk.dev; connect-src 'self' https://*.clerk.com https://*.clerk.dev; frame-src 'self' https://*.clerk.com https://*.clerk.dev;",
-          // }
-          // {
           //   key: 'Content-Security-Policy',
           //   value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
           // },
