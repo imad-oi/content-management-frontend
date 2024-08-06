@@ -127,56 +127,77 @@ export function ContentManager() {
 
   return (
     <AntiScreenshot>
-      <div>
+      <div role="region" aria-label="Content Management">
         <form onSubmit={handleSubmit} className="mb-4">
+          <label htmlFor="content-input" className="block mb-2">
+            Enter your content:
+          </label>
           <Textarea
+            id="content-input"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Enter your content here..."
             className="mb-2"
+            aria-required="true"
           />
-          <Button type="submit" className="mr-2">
-            Add Content
-          </Button>
-          <Input
-            type="file"
-            accept=".txt"
-            onChange={handleFileUpload}
-            ref={fileInputRef}
-            className="hidden"
-          />
-          <Button type="button" onClick={() => fileInputRef.current.click()}>
-            Upload File
-          </Button>
+          <div className="flex space-x-2">
+            <Button type="submit">Add Content</Button>
+            <Input
+              type="file"
+              accept=".txt"
+              onChange={handleFileUpload}
+              ref={fileInputRef}
+              className="hidden"
+              id="file-upload"
+              aria-label="Upload text file"
+            />
+            <Button type="button" onClick={() => fileInputRef.current.click()}>
+              Upload File
+            </Button>
+          </div>
         </form>
+
         <Button
           onClick={handleClearDatabase}
           className="mb-4 bg-red-500 hover:bg-red-700"
+          aria-label="Clear all content from database"
         >
           Clear Database
         </Button>
-        <ul>
+
+        <ul className="list-none p-0" aria-label="Content List">
           {contentList.map((item) => (
             <li key={item.id} className="mb-4 p-4 border rounded">
-              <strong>{item.session}:</strong>
-              {item.isFile && (
-                <span className="ml-2">(File: {item.fileName})</span>
-              )}
-              <p>
-                {expandedContent[item.id] || item.text.slice(0, CHUNK_SIZE)}
-                {item.text.length > CHUNK_SIZE &&
-                  !expandedContent[item.id] &&
-                  "..."}
-              </p>
-              {item.text.length > CHUNK_SIZE &&
-                (expandedContent[item.id] || "").length < item.text.length && (
-                  <Button
-                    onClick={() => loadMoreContent(item.id)}
-                    className="mt-2"
-                  >
-                    Load More
-                  </Button>
+              <div>
+                <strong>Session: </strong>
+                <span>{item.session}</span>
+                {item.isFile && (
+                  <span className="ml-2" aria-label="File name">
+                    (File: {item.fileName})
+                  </span>
                 )}
+              </div>
+              <div className="mt-2">
+                <p>
+                  {expandedContent[item.id] || item.text.slice(0, CHUNK_SIZE)}
+                  {item.text.length > CHUNK_SIZE &&
+                    !expandedContent[item.id] &&
+                    "..."}
+                </p>
+                {item.text.length > CHUNK_SIZE &&
+                  (expandedContent[item.id] || "").length <
+                    item.text.length && (
+                    <Button
+                      onClick={() => loadMoreContent(item.id)}
+                      className="mt-2"
+                      aria-label={`Load more content for ${
+                        item.isFile ? item.fileName : "entry"
+                      }`}
+                    >
+                      Load More
+                    </Button>
+                  )}
+              </div>
             </li>
           ))}
         </ul>
