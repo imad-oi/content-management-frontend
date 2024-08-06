@@ -12,6 +12,7 @@ export default function Captcha({onVerify}) {
   const [captchaText, setCaptchaText] = useState('');
   const [userInput, setUserInput] = useState('');
   const canvasRef = useRef(null);
+  const inputRef = useRef(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -58,7 +59,6 @@ export default function Captcha({onVerify}) {
         title: "CAPTCHA Verified",
         description: "You have successfully verified the CAPTCHA.",
       });
-
     } else {
       toast({
         title: "CAPTCHA Incorrect",
@@ -67,41 +67,57 @@ export default function Captcha({onVerify}) {
       });
       generateCaptcha();
       setUserInput('');
+      inputRef.current.focus();
     }
+  };
+
+  const regenerateCaptcha = () => {
+    generateCaptcha();
+    setUserInput('');
+    inputRef.current.focus();
   };
 
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>CAPTCHA Verification</CardTitle>
+        <CardTitle id="captcha-title">CAPTCHA Verification</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid w-full items-center gap-4">
-          <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="captcha-input">Enter the text you see in the image:</Label>
-            <canvas
-              ref={canvasRef}
-              width={200}
-              height={60}
-              aria-label="CAPTCHA image"
-              className="mb-2 pointer-events-none bg-white border border-gray-300 rounded-md"
-            />
-            <Input
-              id="captcha-input"
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="Enter CAPTCHA"
-              required
-              aria-required="true"
-              // className="[&:not(:placeholder-shown)]:text-[.1px] [&:not(:placeholder-shown)]:tracking-[5px] [&:not(:placeholder-shown)]:font-bold"
-            />
+        <form onSubmit={handleSubmit} aria-labelledby="captcha-title">
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="captcha-input">Enter the text you see in the image:</Label>
+              <canvas
+                ref={canvasRef}
+                width={200}
+                height={60}
+                aria-label="CAPTCHA image"
+                className="mb-2 pointer-events-none bg-white border border-gray-300 rounded-md"
+              />
+              <Button type="button" onClick={regenerateCaptcha} className="mb-2">
+                Regenerate CAPTCHA
+              </Button>
+              <Input
+                id="captcha-input"
+                ref={inputRef}
+                type="text"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="Enter CAPTCHA"
+                required
+                aria-required="true"
+                aria-describedby="captcha-description"
+              />
+              <p id="captcha-description" className="sr-only">
+                Enter the characters you see in the image above. If you can't read the image, use the Regenerate CAPTCHA button to get a new image.
+              </p>
+            </div>
           </div>
-        </div>
+          <CardFooter className="px-0 pt-4">
+            <Button type="submit" className="w-full">Verify CAPTCHA</Button>
+          </CardFooter>
+        </form>
       </CardContent>
-      <CardFooter>
-        <Button onClick={handleSubmit} type="submit" className="w-full">Verify CAPTCHA</Button>
-      </CardFooter>
     </Card>
   );
 }
